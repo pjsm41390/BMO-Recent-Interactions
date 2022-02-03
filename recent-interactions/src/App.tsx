@@ -1,16 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
 import logo from './logo.svg';
 import './App.css';
-import { connect } from '@openfin/salesforce';
+import { connect,RestApiError } from '@openfin/salesforce';
 
+let salesforce;
 
 function App() {
-  
-const salesforceOrgUrl = 'https://devorg.my.salesforce.com';
-const consumerKey = 'ThisIsNotARealKeyJjdw1J9LLJbP_pqwoJYyuisjQhr_LLurNDv7AgQvDTZwCoZuDZrXcPCmBv4o.8ds.5gF';
-const isSandbox = false;
+  let salesforceUrl = "https://bmo--devmvp.my.salesforce.com/";
+  let consumerKey =
+    "3MVG9PG9sFc71i9kqDhbn3Umurb1KYUbi8wANw8tbpo4fTpvgXsZfWYRzAD98eELqa5Bl3DcEGlc0eLK_RsuY";
 
-const salesforce = await connect(salesforceOrgUrl, consumerKey, isSandbox);
+  (async () => {
+    // Connect to salesforce org at the provided url using the provided consumer key
+    salesforce = await connect(salesforceUrl, consumerKey, true);
+    
+    const apiEndpoint = '/services/data/vXX.X/...'; // Relative REST API endpoint
+    const httpMethod = 'GET'; // Defaults to GET
+    const data = {}; // Optional, for POST and PATCH requests
+    const headers = {}; // Optional
+
+    try {
+      const response = await salesforce.executeApiRequest<any>(apiEndpoint, httpMethod, data, headers);
+      const responseData = response.data;
+    } catch (err) {
+      if (err instanceof RestApiError) {
+        const status = err.restApiResponseStatus; // HTTP response status (e.g. 4xx/5xx)
+        const errorCode = err.restApiErrorCode; // Salesforce REST API error code (if provided)
+        const description = err.restApiErrorDescription; // Salesforce REST API error description (if provided)
+      }
+    }
+  })();
   return (
     <div className="App">
       <header className="App-header">
