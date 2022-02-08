@@ -49,15 +49,12 @@ function App() {
           for (let i = 0; i < response.data.records.length; i++) {
               // @ts-ignore: Unreachable code error
             tracklistTable.innerHTML += '<tr><td>' +
-                "<h2 className='title is-size-1'>" + response.data.records[i].Full_Name__c +"</h2>" +
-                "<label className='title is-size-1'>" + response.data.records[i].Title +"</label>" +
+                "<h2 className='title is-size-1'>" + response.data.records[i].T1C_AEM__AEM_Event_Name__c +"</h2>" +
+                "<label className='title is-size-1'>" + "Category: " +response.data.records[i].Category__c +"</label>" +
                 "<br/>" +
-                "<label className='title is-size-1'>" + response.data.records[i].Phone +"</label>" +
+                "<label className='title is-size-1'>" + "Meeting Type: " + response.data.records[i].T1C_AEM__Type__c +"</label>" +
                 "<br/>" +
-                "<label className='title is-size-1'>" + response.data.records[i].Main_Street__c +"</label>" +
-                 "<br/>" +
-                "<label className='title is-size-1'>" + response.data.records[i].Main_City__c + ", " +"</label>"  +
-                "<label className='title is-size-1'>" + response.data.records[i].Main_Country__c +"</label>"  +
+                "<label className='title is-size-1'>" + "Booking Type: " + response.data.records[i].T1C_AEM__Booking_Type__c +"</label>" +
               "<hr/>" +
               '</td></tr>'
           }
@@ -69,7 +66,7 @@ function App() {
   
   return (
    <div className="App">
-    <h1 className='title is-size-1'>Top Contacts</h1>
+    <h1 className='title is-size-1'>Events</h1>
       <table id="tracklist" />      
     </div>
   );
