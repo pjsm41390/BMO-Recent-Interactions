@@ -49,12 +49,10 @@ function App() {
           for (let i = 0; i < response.data.records.length; i++) {
               // @ts-ignore: Unreachable code error
             tracklistTable.innerHTML += '<tr><td>' +
-                "<h2 className='title is-size-1'>" + response.data.records[i].T1C_AEM__AEM_Event_Name__c +"</h2>" +
-                "<label className='title is-size-1'>" + "Category: " +response.data.records[i].Category__c +"</label>" +
-                "<br/>" +
-                "<label className='title is-size-1'>" + "Meeting Type: " + response.data.records[i].T1C_AEM__Type__c +"</label>" +
-                "<br/>" +
-                "<label className='title is-size-1'>" + "Booking Type: " + response.data.records[i].T1C_AEM__Booking_Type__c +"</label>" +
+                "<h2 class='is-size-5'>" + response?.data?.records[i]?.T1C_AEM__AEM_Event_Name__c +"</h2>" +
+                "<h3>" + "Category: " +response?.data?.records[i]?.Category__c +"</h3>" +
+                "<h3>" + "Meeting Type: " + response?.data?.records[i]?.T1C_AEM__Type__c +"</h3>" +
+                "<h3>" + "Booking Type: " + response?.data?.records[i]?.T1C_AEM__Booking_Type__c +"</h3>" +
               "<hr/>" +
               '</td></tr>'
           }
@@ -65,9 +63,9 @@ function App() {
   fin.me.interop.addContextHandler(handleIncomingContext);
   
   return (
-   <div className="App">
-    <h1 className='title is-size-3'>Events</h1>
-      <table id="tracklist" />      
+   <div className="container"><br/>
+    <h1 className='is-fullwidth is-size-4 has-text-centered'>Events</h1>
+      <table className="is-flex is-justify-content-center table has-text-centered is-full-width" id="tracklist" />      
     </div>
   );
 }
