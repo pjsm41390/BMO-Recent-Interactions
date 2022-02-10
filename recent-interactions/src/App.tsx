@@ -66,7 +66,7 @@ function App() {
   
   return (
    <div className="App">
-    <h1 className='title is-size-1'>Events</h1>
+    <h1 className='title is-size-3'>Events</h1>
       <table id="tracklist" />      
     </div>
   );
